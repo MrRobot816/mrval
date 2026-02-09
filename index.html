@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine buba ariValentine buba ari?Valentine buba ari?</title>
+
+    <!-- Remove previews on WhatsApp/social media -->
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:card" content="none">
+
+    <title></title>
+
     <style>
         * {
             margin: 0;
@@ -178,14 +186,12 @@
     </div>
 
     <script>
-        // DOM elements
         const yesButton = document.getElementById('yes-button');
         const noButton = document.getElementById('no-button');
         const mainGif = document.getElementById('main-gif');
         const heartGif = document.getElementById('heart-gif');
         const responseMessage = document.getElementById('response-message');
         
-        // Variables to track button state
         let yesSize = 1;
         let noClicks = 0;
         const yesMessages = [
@@ -202,44 +208,28 @@
             "FINAL CHANCE TO SAY YES"
         ];
         
-        // Handle YES button click
         yesButton.addEventListener('click', function() {
-            // Show heart gif
             heartGif.classList.add('show');
-            
-            // Hide main gif
             mainGif.style.display = 'none';
-            
-            // Show response message
             responseMessage.textContent = "YAYY I LOVE YOU! 💖";
             responseMessage.classList.add('show');
-            
-            // Hide the buttons
             yesButton.style.display = 'none';
             noButton.style.display = 'none';
-            
-            // Change title
             document.querySelector('.title').textContent = "You've Made Me The Happiest Person! 💕";
         });
         
-        // Handle NO button click
         noButton.addEventListener('click', function() {
-            // Increase YES button size gradually
             yesSize += 0.3;
             yesButton.style.transform = `scale(${yesSize})`;
             
-            // Change YES button text based on number of clicks
             if (noClicks < yesMessages.length) {
                 yesButton.textContent = yesMessages[noClicks];
             } else {
-                // After using all messages, alternate between last two
                 yesButton.textContent = noClicks % 2 === 0 ? "PLEASE CLICK YES" : "JUST SAY YES!";
             }
             
-            // Increment click counter
             noClicks++;
             
-            // After 10 clicks, disable the NO button
             if (noClicks >= 10) {
                 noButton.classList.add('disabled');
                 noButton.disabled = true;
