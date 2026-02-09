@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine buba ariValentine buba ari?Valentine buba ari?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffe6e6;
+            padding: 20px;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            color: #ff3366;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gif-container {
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+        }
+        
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .button {
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            min-width: 150px;
+        }
+        
+        .yes-button {
+            background-color: #ff3366;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .yes-button:hover {
+            background-color: #ff0040;
+            transform: scale(1.05);
+        }
+        
+        .no-button {
+            background-color: #f0f0f0;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .no-button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .no-button.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .response-message {
+            font-size: 2.5rem;
+            color: #ff3366;
+            margin-top: 30px;
+            min-height: 60px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .response-message.show {
+            opacity: 1;
+        }
+        
+        .heart-gif {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            display: none;
+        }
+        
+        .heart-gif.show {
+            display: block;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .attribution {
+            margin-top: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .button {
+                padding: 12px 30px;
+                font-size: 1.2rem;
+                min-width: 120px;
+            }
+            
+            .response-message {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Will You Be My Valentine buba Ari?</h1>
+        
+        <div class="gif-container">
+            <img id="main-gif" src="https://i.pinimg.com/originals/8e/d6/ad/8ed6ad3727bd673c5a60f227546431ad.jpg" alt="Valentine's Proposal">
+        </div>
+        
+        <div class="buttons-container">
+            <button id="yes-button" class="button yes-button">YES</button>
+            <button id="no-button" class="button no-button">NO</button>
+        </div>
+        
+        <div class="heart-gif" id="heart-gif">
+            <img src="https://media.tenor.com/1Ze3AoBHyW0AAAAM/fireworks-exploding-heart.gif" alt="Heart Fireworks">
+        </div>
+        
+        <div class="response-message" id="response-message"></div>
+    </div>
+    
+    <div class="attribution">
+        Made with ❤️ for My buba HARIEL
+    </div>
+
+    <script>
+        // DOM elements
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+        const mainGif = document.getElementById('main-gif');
+        const heartGif = document.getElementById('heart-gif');
+        const responseMessage = document.getElementById('response-message');
+        
+        // Variables to track button state
+        let yesSize = 1;
+        let noClicks = 0;
+        const yesMessages = [
+            "PLEASE CLICK YES",
+            "I BEG YOU SAY YES",
+            "DON'T SAY NO PLEASE",
+            "JUST CLICK YES ALREADY",
+            "YES IS THE ONLY OPTION",
+            "I'LL KEEP GROWING",
+            "CLICK YES NOW!",
+            "YOU HAVE TO SAY YES",
+            "YES IS THE RIGHT CHOICE",
+            "SAY YES PLEASE!",
+            "FINAL CHANCE TO SAY YES"
+        ];
+        
+        // Handle YES button click
+        yesButton.addEventListener('click', function() {
+            // Show heart gif
+            heartGif.classList.add('show');
+            
+            // Hide main gif
+            mainGif.style.display = 'none';
+            
+            // Show response message
+            responseMessage.textContent = "YAYY I LOVE YOU! 💖";
+            responseMessage.classList.add('show');
+            
+            // Hide the buttons
+            yesButton.style.display = 'none';
+            noButton.style.display = 'none';
+            
+            // Change title
+            document.querySelector('.title').textContent = "You've Made Me The Happiest Person! 💕";
+        });
+        
+        // Handle NO button click
+        noButton.addEventListener('click', function() {
+            // Increase YES button size gradually
+            yesSize += 0.3;
+            yesButton.style.transform = `scale(${yesSize})`;
+            
+            // Change YES button text based on number of clicks
+            if (noClicks < yesMessages.length) {
+                yesButton.textContent = yesMessages[noClicks];
+            } else {
+                // After using all messages, alternate between last two
+                yesButton.textContent = noClicks % 2 === 0 ? "PLEASE CLICK YES" : "JUST SAY YES!";
+            }
+            
+            // Increment click counter
+            noClicks++;
+            
+            // After 10 clicks, disable the NO button
+            if (noClicks >= 10) {
+                noButton.classList.add('disabled');
+                noButton.disabled = true;
+                noButton.textContent = "Can't say no anymore!";
+            }
+        });
+    </script>
+</body>
+</html>
